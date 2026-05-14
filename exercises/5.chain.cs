@@ -1,7 +1,19 @@
+using System;
 
 int Divide(int a, int b)
 {
-    return a / b;
+    try
+    {
+        return a/b;
+    }
+    catch (DivideByZeroException ex)
+    {
+        throw new ArgumentException("Denominator cannot be zero.", ex);
+    }
+    finally
+    {
+        Console.WriteLine("Division Attempted");
+    }
 }
 
 int ReadAndDivide()
@@ -10,7 +22,17 @@ int ReadAndDivide()
     int a = int.Parse(Console.ReadLine()!);
     Console.Write("Denominator: ");
     int b = int.Parse(Console.ReadLine()!);
-    return Divide(a, b);
+
+    try
+    {
+        return Divide(a, b);
+    }
+    catch (ArgumentException e)
+    {
+        Console.WriteLine("Argument Error - Cannot divide by zero.\n" + e.InnerException?.Message);
+        return 0;
+    }
+    
 }
 
 Console.WriteLine(ReadAndDivide());
