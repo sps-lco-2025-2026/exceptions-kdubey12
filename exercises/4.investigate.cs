@@ -1,11 +1,27 @@
 // Snippet A
-int[] arr = new int[3];
-arr[10] = 5;
+try
+{
+    int[] arr = new int[3];
+    arr[10] = 5;
+}
+catch (IndexOutOfRangeException e)
+{
+    Console.WriteLine("Assigning out of range! " + e.Message);
+}
 
 // Snippet B
-string s = null!;
-Console.WriteLine(s.Length);
+try
+{
+    string s = null!;
+    Console.WriteLine(s.Length);
+}
+catch (NullReferenceException e)
+{
+    Console.WriteLine("Attempted to invoke method on null reference. " + e.Message);
+}
 
 // Snippet C
-int x = int.MaxValue;
-checked { x = x + 1; }   // checked enforces overflow detection
+
+    int x = int.MaxValue;
+    checked { x = x + 1; }
+
